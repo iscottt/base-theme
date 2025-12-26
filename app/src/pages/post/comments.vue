@@ -66,7 +66,8 @@ async function submitComment() {
       post_id: props.post.id,
       email: email.value,
       url: url.value,
-      name: username.value
+      name: username.value,
+      parent: reply2.value || undefined,
     });
     if (data.error) {
       window.$message.error(data.error)
