@@ -44,6 +44,10 @@ body {
   overflow-x: hidden;
 }
 
+button {
+  cursor: pointer;
+}
+
 #app {
   display: flex;
   flex-direction: column;

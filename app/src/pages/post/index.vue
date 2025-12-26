@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { BlockParser } from '@/components'
+import Comments from './comments.vue'
 import { useRouter } from 'vue-router'
 import { axiosPost } from '@/assets/utils'
 import useAppStore from '@/bases/store/app'
@@ -55,6 +56,7 @@ const tags = computed(() => {
     <!-- 文章内容 -->
     <main class="prose max-w-none">
       <BlockParser is="article" :blocks="post.content.blocks" ref="article" />
+      <Comments :post="post" v-if="post.id"/>
     </main>
   </div>
 </template>

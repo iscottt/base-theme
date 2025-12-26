@@ -34,65 +34,35 @@ function isActiveItem(item) {
 </script>
 
 <template>
-  <ul 
-    :class="[
-      level === 1 
-        ? 'flex items-center space-x-1' 
-        : 'absolute left-0 top-0 ml-1 min-w-48 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-left z-50',
-      // 第三级及以后，调整位置到右侧
-      level > 2 ? 'left-full top-0' : ''
-    ]"
-  >
-    <li 
-      v-for="item in items" 
-      :key="item.id" 
-      :class="[
-        'relative',
-        level === 1 ? 'group' : 'group/submenu',
-        // 为有子菜单的项添加指示器
-        item.children && item.children.length ? 'has-children' : ''
-      ]"
-    >
+  <ul :class="[
+    level === 1
+      ? 'flex items-center space-x-1'
+      : 'absolute left-0 top-0 ml-1 min-w-48 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-left z-50',
+    // 第三级及以后，调整位置到右侧
+    level > 2 ? 'left-full top-0' : ''
+  ]">
+    <li v-for="item in items" :key="item.id" :class="[
+      'relative',
+      level === 1 ? 'group' : 'group/submenu',
+      // 为有子菜单的项添加指示器
+      item.children && item.children.length ? 'has-children' : ''
+    ]">
       <!-- 菜单项链接 -->
-      <router-link
-        :to="stripOrigin(item.url)" 
-        :target="item.opennew ? '_blank' : '_self'"
-        :class="[
-          level === 1 
-            ? 'flex items-center px-4 py-2 text-gray-700 rounded-lg hover:bg-gray-100 hover:text-indigo-600 transition-colors duration-200'
-            : 'flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg transition-colors duration-200',
-          isActiveItem(item) ? 'text-indigo-600 bg-indigo-50' : ''
-        ]"
-      >
-        <span v-html="item.label"></span>
-        <!-- 所有层级有子菜单的都显示箭头 -->
-        <svg 
-          v-if="item.children && item.children.length"
-          :class="[
-            'w-4 h-4 transition-transform duration-200',
-            level === 1 ? 'ml-1' : 'ml-2',
-            'group-hover:rotate-90'
-          ]" 
-          fill="none"
-          stroke="currentColor" 
-          viewBox="0 0 24 24"
-        >
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
+      <router-link :to="stripOrigin(item.url)" :target="item.opennew ? '_blank' : '_self'" :class="[
+        level === 1
+          ? 'flex items-center px-4 py-2 text-gray-700 rounded-lg hover:bg-gray-100 hover:text-indigo-600 transition-colors duration-200'
+          : 'flex items-center px-4 py-3 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg transition-colors duration-200',
+        isActiveItem(item) ? 'text-indigo-600 bg-indigo-50' : ''
+      ]" v-html="item.label">
       </router-link>
 
       <!-- 递归子菜单 -->
-      <nav-submenu 
-        v-if="item.children && item.children.length"
-        :items="item.children"
-        :level="level + 1"
-        :class="[
-          // 第二级菜单：相对于第一级向下展开
-          level === 1 ? 'absolute left-0 top-full mt-1' : '',
-          // 防止最右边的子菜单超出屏幕
-          level === 1 ? 'right-0' : ''
-        ]"
-      />
+      <nav-submenu v-if="item.children && item.children.length" :items="item.children" :level="level + 1" :class="[
+        // 第二级菜单：相对于第一级向下展开
+        level === 1 ? 'absolute left-0 top-full mt-1' : '',
+        // 防止最右边的子菜单超出屏幕
+        level === 1 ? 'right-0' : ''
+      ]" />
     </li>
   </ul>
 </template>
@@ -106,15 +76,15 @@ ul:not(:first-child) {
 }
 
 /* 悬停时显示子菜单 */
-.group:hover > ul,
-.group\/submenu:hover > ul {
+.group:hover>ul,
+.group\/submenu:hover>ul {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
 }
 
 /* 为有子菜单的项添加视觉提示 */
-.has-children > a::after {
+.has-children>a::after {
   content: '';
   position: absolute;
   right: 8px;
