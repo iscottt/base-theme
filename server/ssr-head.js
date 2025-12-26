@@ -16,20 +16,13 @@ var generate_head = ({title, description, image})=>{
 		`)
 
 	// image相关
-	var logo = parse_image_url(get_option('niRvana_logo_url'));
-	var favicon = parse_image_url(get_option('niRvana_favicon_32'));
-	var apple_touch_icon = parse_image_url(get_option('niRvana_apple_touch_icon'));
+	var logo = parse_image_url(get_option('base_logo_url'));
 	nv_enqueue_head(`
-		<meta itemprop="image" content="${image || apple_touch_icon || favicon || logo}" />
+		<meta itemprop="image" content="${image || logo}" />
 		`)
-	if (favicon) {
+	if (logo) {
 		nv_enqueue_head(`
-		<link rel="shortcut icon" href="${favicon}" sizes="32x32">
-		`)
-	}
-	if (apple_touch_icon) {
-		nv_enqueue_head(`
-		<link rel="apple-touch-icon" href="${apple_touch_icon}">
+		<link rel="shortcut icon" href="${logo}" sizes="32x32">
 		`)
 	}
 }
@@ -40,11 +33,6 @@ add_action('nv_head', (req,route) => {
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
 		`)
-	// niRvana的自定义head
-	var custom_head = get_option('niRvana_custom_head','');
-	if (custom_head) {
-		nv_enqueue_head(custom_head)
-	}
 },-1)
 
 add_action('nv_head', (req,route) => {
@@ -65,9 +53,9 @@ add_action('nv_head', (req,route) => {
 add_action('nv_head', (req,route) => {
 	if (!['articles','articles_paged'].includes(route.name)) {return;}
 	var site_name = get_option('nv_site_name','nvPress');
-	var current_page = parseInt(req.params.current_page) || 1;
+	var current_page = parseInt(req.params.page) || 1;
 
-	var title = `全部文章${current_page > 1 ? ` - 第${req.params.current_page}页` : ''} - ${site_name}`;
+	var title = `全部文章${current_page > 1 ? ` - 第${req.params.page}页` : ''} - ${site_name}`;
 	var description = esc_html(strip_tags( `欢迎访问 ${site_name}，您当前浏览的是全站文章列表` ));
 
 	generate_head({title, description});
@@ -126,7 +114,7 @@ add_action('nv_head', (req,route) => {
 
 	var term_slug = req.params.term_slug;
 	var taxonomy = req.params.taxonomy;
-	var current_page = parseInt(req.params.current_page) || 1;
+	var current_page = parseInt(req.params.page) || 1;
 
 	var term_id = term_exists(term_slug, taxonomy);
 	if (!term_id) {
@@ -139,7 +127,7 @@ add_action('nv_head', (req,route) => {
 
 	var site_name = get_option('nv_site_name','nvPress');
 
-	var title = `${term.name}${current_page > 1 ? ` - 第${req.params.current_page}页` : ''} - ${site_name}`;
+	var title = `${term.name}${current_page > 1 ? ` - 第${req.params.page}页` : ''} - ${site_name}`;
 	var description = esc_html(strip_tags(`欢迎光临${site_name}，您当前浏览的分类是：${term.name}`));
 	generate_head({title, description});
 })

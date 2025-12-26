@@ -77,6 +77,5 @@ register_rest_route('base','site-metas',{
 });
 
 // 引入其他模块
-require('./function-archive.js')
 require('./function-post.js')
 require('./function-ssr.js')

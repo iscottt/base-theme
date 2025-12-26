@@ -1,23 +1,15 @@
 var {show_post_list, show_category_menu, parse_image_url} = require('./ssr-common.js');
 
 var get_footer = ()=>{
-	var copyright = get_option("niRvana_copyright", "PANDA Studio - nvPress")
-	var links = get_option('niRvana_footer_links',[]).map(item=>{
-		return `<a href="${item.url}" target="_blank" rel="noopener noreferrer nofollow">
-		${item.image ? `<img src="${item.image}" />` : ''}
-		${item.text}
-		</a>`;
-	}).join('');
+	var copyright = get_option("base_copyright", "三禾木木 - nvPress")
 	return `<footer>
 				${copyright}
-				${links ? `<div class="links">${links}</div>` : ''}
 			</footer>`;
 }
 
 add_action('async:nv_render:home',(next,{echo,req,route})=>{
 	var site_name = get_option('nv_site_name','nvPress');
 	var site_description = get_option('nv_site_description','');
-	var copyright = get_option("niRvana_copyright", "PANDA Studio - nvPress")
 	echo(`
 		<div class="home ssr-body">
 			<div class="banner">
@@ -43,15 +35,12 @@ add_action('async:nv_render:home',(next,{echo,req,route})=>{
 
 
 var render_articles = (next,{echo,req,route})=>{
-	var current_page = parseInt(req.params.current_page) || 1;
-	var site_name = get_option('nv_site_name','nvPress');
-	var site_description = get_option('nv_site_description','');
-	var copyright = get_option("niRvana_copyright", "PANDA Studio - nvPress")
+	var current_page = parseInt(req.params.page) || 1;
 	var main_posts = query_posts({
 					post_type: 'article',
 					status: 'publish',
 					current_page,
-					posts_per_page: get_option('niRvana_posts_per_page',10)
+					posts_per_page: 12
 				});
 	var {posts_per_page, total} = main_posts.pagination;
 	var show_pagination = ({posts_per_page, total, current_page})=>{
@@ -99,7 +88,7 @@ var render_term = (next,{echo,req,route})=>{
 
 	var term_slug = req.params.term_slug;
 	var taxonomy = req.params.taxonomy;
-	var current_page = parseInt(req.params.current_page) || 1;
+	var current_page = parseInt(req.params.page) || 1;
 
 	var term_id = term_exists(term_slug, taxonomy);
 	if (!term_id) {
@@ -119,7 +108,7 @@ var render_term = (next,{echo,req,route})=>{
 						}]
 					},
 					current_page,
-					posts_per_page: get_option('niRvana_posts_per_page',10)
+					posts_per_page: 12
 				});
 	var {posts_per_page, total} = main_posts.pagination;
 	var show_pagination = ({posts_per_page, total, current_page})=>{
