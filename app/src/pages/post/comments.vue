@@ -3,7 +3,7 @@ import { ref, onMounted, computed } from 'vue';
 import { Pagination } from '@/components';
 import useAppStore from '@/bases/store/app'
 // 假设这是你封装的请求方法
-import { axiosPost } from '@/assets/utils';
+import { axiosPost, arrayToTree } from '@/assets/utils';
 import { useRouter, useRoute } from 'vue-router';
 const route = useRoute();
 const router = useRouter();
@@ -39,7 +39,7 @@ async function fetchComments() {
       comments_per_page: 2
     });
     if (data && data.data) {
-      comments.value = data.data;
+      comments.value = arrayToTree(data.data);
       totalNum.value = data.pagination.total
     }
   } catch (error) {
@@ -75,7 +75,7 @@ async function submitComment() {
     }
     if (data.public) {
       if (!reply2.value)
-        current_page.value = 1
+        currentPage.value = 1
       // 评论发表成功
       fetchComments();
     }
@@ -205,6 +205,34 @@ onMounted(() => {
                 <p class="text-gray-700 whitespace-pre-line">{{ comment.content }}</p>
               </div>
             </div>
+            <!-- 子评论 示例主题只做两级，开发者自行优化 -->
+            <ul v-if="comment.children && comment.children.length" class="mt-6 ml-12 border-l-2 border-gray-200 pl-6">
+              <li v-for="child in comment.children" :key="child.id" class="mb-6" :id="`comment-item-${child.id}`">
+                <div class="flex items-start">
+                  <!-- 头像 -->
+                  <div class="shrink-0 mr-4">
+                    <div
+                      class="h-9 w-9 rounded-full bg-linear-to-br from-green-400 to-teal-500 flex items-center justify-center text-white font-bold">
+                      {{ child.name ? child.name.charAt(0).toUpperCase() : 'U' }}
+                    </div>
+                  </div>
+                  <!-- 评论内容 -->
+                  <div class="flex-1">
+                    <div class="flex items-center justify-between mb-1">
+                      <h3 class="text-sm font-medium text-gray-900">{{ child.name }}</h3>
+                      <div class="mt-2 flex space-x-4 text-xs">
+                        <span class=" text-gray-500">{{ new Date(child.date).toLocaleString() }}</span>
+                        <button @click="reply2 = child.id"
+                          class="text-gray-500 cursor-pointer hover:text-blue-500 transition-colors flex items-center">
+                          回复
+                        </button>
+                      </div>
+                    </div>
+                    <p class="text-gray-700 whitespace-pre-line">{{ child.content }}</p>
+                  </div>
+                </div>
+              </li>
+            </ul>
           </li>
         </ul>
       </div>
