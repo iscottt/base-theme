@@ -42,7 +42,7 @@ export const routes = [
     meta: { is_term: true },
   },
   {
-    path: "/articles/page/:current_page(\\d+)",
+    path: "/articles/:page(\\d+)",
     name: "articles-paged",
     component: () => import('@/pages/term/index.vue'),
     meta: { is_term: true },
@@ -56,7 +56,7 @@ export const routes = [
     meta: { is_term: true },
   },
   {
-    path: "/:taxonomy/:term_slug/page/:current_page(\\d+)",
+    path: "/:taxonomy/:term_slug/:page(\\d+)",
     name: "term-paged",
     component: () => import('@/pages/term/index.vue'),
     meta: { is_term: true },

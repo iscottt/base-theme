@@ -11,7 +11,7 @@ const appStore = useAppStore()
     <h1 class="text-3xl font-bold">{{ appStore.site_metas.nv_site_name }}</h1>
     <!-- 顶部导航 -->
     <nav class="ml-auto">
-      <nav-menu :navs="appStore.topNav" />
+      <nav-menu :navs="appStore.topNav || []" />
     </nav>
   </div>
 </template>
