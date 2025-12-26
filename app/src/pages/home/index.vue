@@ -42,10 +42,7 @@ requestData()
     </section>
     <!-- 分页导航 -->
     <Pagination :current-page="currentPage" :total-pages="totalPages" @page-change="handlePageChange" />
-    <!-- 站点底部 -->
-    <footer class="mt-12 text-center text-gray-500">
-      {{ appStore.site_metas.base_copyright }}
-    </footer>
+   
   </div>
 </template>
 <style scoped></style>

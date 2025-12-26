@@ -2,7 +2,7 @@
 import { useRoute } from 'vue-router'
 import { axiosPost } from '@/assets/utils'
 import useAppStore from '@/bases/store/app'
-import { SiteHeader } from '@/components'
+import { SiteHeader, SiteFooter } from '@/components'
 const appStore = useAppStore()
 const route = useRoute()
 async function getSiteMetas() {
@@ -25,9 +25,10 @@ getMenus()
       <component :is="Component" :key="route.fullPath" />
     </transition>
   </router-view>
+  <SiteFooter />
 </template>
 
-<style scoped>
+<style>
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity .2s ease-in-out;
@@ -36,5 +37,16 @@ getMenus()
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 </style>
