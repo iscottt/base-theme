@@ -26,7 +26,6 @@
 <script>
 import { defineComponent,computed } from "vue";
 import nullBlock from "./null.vue"
-import createLightbox from "./create-lightbox.js"
 export default defineComponent({
 	name: 'block-image',
 	props: {
@@ -38,12 +37,7 @@ export default defineComponent({
 		nullBlock
 	},
 	methods:{
-		handleClick(event) {
-			if (this.data.href && !this.data.opennew) {
-				event.preventDefault()
-				createLightbox(this.data.href)
-			}
-		}
+
 	}
 })
 </script>

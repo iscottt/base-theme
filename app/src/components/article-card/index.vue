@@ -1,9 +1,16 @@
 <script setup>
-defineProps({
+  import {computed} from 'vue'
+const props = defineProps({
   item: {
     type: Object,
     required: true
   }
+})
+const category = computed(() => {
+  if(!props.item.taxonomies) return props.item.categories.join(',') || ''
+  const cats = props.item.taxonomies.category || []
+  // 去除cats中每一项的name
+  return cats.map(item => item.name).join(', ')
 })
 </script>
 
@@ -17,7 +24,7 @@ defineProps({
       <div v-else class="w-full h-full bg-gray-200"></div>
       <div class="absolute top-4 left-4">
         <span class="px-3 py-1 text-xs font-semibold text-white bg-indigo-600 rounded-full">
-          {{ item.category || '默认分类' }}
+          {{ category || '无分类' }}
         </span>
       </div>
     </div>

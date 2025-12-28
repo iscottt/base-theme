@@ -1,5 +1,5 @@
 <template>
-	<pf-scroller is="div" class="block-table">
+	<div class="block-table">
 		<table>
 			<thead v-if="data.withHeadings">
 				<tr>
@@ -12,16 +12,12 @@
 				</tr>
 			</tbody>
 		</table>
-	</pf-scroller>
+	</div>
 </template>
 <script>
 import { defineComponent,computed } from "vue";
-import {scrollbar_container} from "../pf-scrollbar";
 export default defineComponent({
 	name: 'block-table',
-	components: {
-		"pf-scroller": scrollbar_container
-	},
 	props: {
 		data: {
 			type: Object

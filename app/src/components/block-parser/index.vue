@@ -1,6 +1,6 @@
 <template>
 	<component :is="is" class="nv-blocks">
-		<p v-if="blocks.length == 0">暂无数据</p>
+		<p v-if="blocks.length == 0" class="text-center text-gray-500 h-64 bg-gray-100 rounded-lg leading-64">暂无数据</p>
 		<template v-for="block in blocks">
 			<component
 			:is="`block-${block.type.replace(/\//g,'-')}`"

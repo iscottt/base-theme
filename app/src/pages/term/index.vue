@@ -55,9 +55,10 @@ requestData()
       <nav-menu :navs="appStore.cateNav || []" />
     </nav>
     <!-- 该分类下的文章列表 -->
-    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <section v-if="articles.length" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       <article-card v-for="item in articles" :key="item.id" :item="item" class="mb-6" />
     </section>
+    <p v-else class="text-center text-gray-500 h-64 bg-gray-100 rounded-lg leading-64">暂无数据</p>
     <!-- 分页导航 -->
     <Pagination :current-page="currentPage" :total-pages="totalPages" @page-change="handlePageChange" />
   </div>
