@@ -18,28 +18,6 @@ global.base_lite_post = (post)=>{
 		metas: get_post_meta(post.id),
 	}
 }
-register_rest_route('base','post-like',{
-	methods: 'post',
-	callback(data,req) {
-		var {id} = data;
-		var likes = get_post_meta(id,'likes') || 0;
-		likes = parseInt(likes+1) || 1;
-		update_post_meta(id,'likes',likes);
-		return likes;
-	}
-});
-
-register_rest_route('base','post-view',{
-	methods: 'post',
-	callback(data,req) {
-		var {id} = data;
-		var views = get_post_meta(id,'views') || 0;
-		views = parseInt(views+1) || 1;
-		update_post_meta(id,'views',views);
-		return views;
-	}
-});
-
 register_rest_route('base','post-list',{
 	methods: 'post',
 	callback(data,req) {
