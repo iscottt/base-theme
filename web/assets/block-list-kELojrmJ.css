@@ -1,0 +1,1 @@
+ol[data-v-cced3b33],ul[data-v-cced3b33]{padding-left:0}li[data-v-cced3b33]{list-style:none;display:flex}li[data-v-cced3b33]:before{margin-right:.4em}ol[data-v-cced3b33]{counter-reset:i}ol li[data-v-cced3b33]:before{content:counters(i,".")".";counter-increment:i}ul li[data-v-cced3b33]:before{content:"•"}

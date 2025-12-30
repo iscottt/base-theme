@@ -1,0 +1,1 @@
+import{S as e,a as t,v as n,w as r}from"./B_kjpjqf.js";var i=e({name:`block-raw`,props:{data:{type:Object}}}),a=[`innerHTML`];function o(e,t,i,o,s,c){return r(),n(`div`,{innerHTML:e.data.html},null,8,a)}var s=t(i,[[`render`,o],[`__scopeId`,`data-v-6343a2c8`]]);export{s as default};

@@ -1,0 +1,1 @@
+import{F as e,P as t,a as n,v as r,w as i}from"./B_kjpjqf.js";var a=n({__name:`block-delimiter`,props:{data:{type:Object}},setup(n){let a=n;return(n,o)=>(i(),r(`div`,{style:e({height:`${a.data.customHeight}px`}),class:t({"hide-symbol":a.data.hideSymbol})},null,6))}},[[`__scopeId`,`data-v-d9fd4175`]]);export{a as default};

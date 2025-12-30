@@ -82,6 +82,7 @@
 │        ├── 📄 index.vue
 │  ├── 📄 vite.config.js
 ├── 📄 function.js
+├── 📄 package.sh
 ├── 📄 readme.md
 └── 📂 server/
 │  ├── 📄 function-post.js
@@ -104,14 +105,9 @@
 - `/app` 目录为`nvpress`的前台代码目录。
 - `/server` 目录为`nvpress`的后台代码目录。
 - `/srcs` 目录放置的是一些不用打包的可直接在后台引用的代码，如`page-settings`目录。
+- `/package.sh` 为打包脚本，打包后会在项目生成一个`base-theme`文件夹，和`base-theme.zip`压缩包。
 
-
-## 打包
-
-- 进入`/app`目录，执行`npm run build`命令，打包后会在项目生成一个`web`文件夹。
-- 进入`/server`目录，执行`npm run build`命令，打包后会在项目生成一个`backend.min.cjs`文件。
-- 将`web`文件夹和`backend.min.cjs`文件替换到`nvpress`的`base-theme`目录下即可。
-- 同时你需要在`base-theme`中添加`function.js`和`theme.json`，以及整个`/srcs`目录。
+> 打包后的`base-theme`文件夹为`nvpress`的主题目录，您可以将其复制到`nvpress`的`themes`目录下，启用该主题。
 
 ## 注意事项
 
