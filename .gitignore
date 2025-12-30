@@ -2,8 +2,8 @@ source/node_modules
 source/components.d.ts
 source/auto-imports.d.ts
 source/stats.html
-scottstudio-thyuu/web
-scottstudio-thyuu
+base-theme/web
+base-theme
 web
 .DS_Store
 *.zip

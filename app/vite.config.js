@@ -1,4 +1,5 @@
 import { fileURLToPath, URL } from 'node:url'
+import path from 'node:path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import tailwindcss from '@tailwindcss/vite'
@@ -26,5 +27,19 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
     extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json'],
+  },
+  build: {
+    assetsInlineLimit: 2048,
+    chunkSizeWarningLimit: 2000,
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, '/application.html'),
+      },
+      output: {
+        entryFileNames: 'assets/[hash].js',
+        chunkFileNames: 'assets/[hash].js'
+      },
+    },
+    outDir: path.resolve(__dirname, '../web'),
   },
 })

@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import { pathToFileURL } from 'url'
+// 主题文件夹名，必须与主题目录名一致，并且打包之后的zip包名也必须与目录名一致
 global.nv_current_theme_folder = 'base-theme';
 // 用户自定义function：在主题根目录新建 custom_functions.js 文件，重启后自动引入
 var custom_function_file = get_theme_path('./custom_functions.js');

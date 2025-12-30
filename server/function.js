@@ -44,17 +44,8 @@ add_meta_box({
 	}
 })
 
-add_meta_box({
-	post_types: ['page'],
-	meta_box_slug: "page-metabox-banner",
-	content: {
-		title: '页面头图',
-		defaultExpanded: true,
-		items: [{
-			label: "", type: "ThumbnailUploader", meta_key: "banner",config: {height: 100},
-		}]
-	}
-})
+
+add_post_type_support('page', 'thumbnail')
 
 register_rest_route('base','site-metas',{
 	methods: 'post',
