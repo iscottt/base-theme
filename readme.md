@@ -32,16 +32,98 @@ npm run dev
 
 ## 目录结构
 
+```markdown
+. 📂 base-theme
+└── 📂 app/
+│  ├── 📄 README.md
+│  ├── 📄 application.html
+│  ├── 📄 index.html
+│  ├── 📄 package.json
+│  ├── 📄 pnpm-lock.yaml
+│  └── 📂 public/
+│  └── 📂 src/
+│    ├── 📄 App.vue
+│    └── 📂 assets/
+│      └── 📂 css/
+│        ├── 📄 global.css
+│      └── 📂 utils/
+│        └── 📂 data/
+│          ├── 📄 index.js
+│        ├── 📄 index.js
+│        └── 📂 request/
+│          ├── 📄 index.js
+│        └── 📂 storage/
+│          ├── 📄 index.js
+│    └── 📂 bases/
+│      └── 📂 router/
+│        ├── 📄 index.js
+│      └── 📂 store/
+│        ├── 📄 app.js
+│        ├── 📄 index.js
+│    └── 📂 components/
+│      └── 📂 article-card/
+│        ├── 📄 index.vue
+│      └── 📂 block-parser/
+│        ├── 📄 block-delimiter.vue
+│        ├── 📄 block-header.vue
+│        ├── 📄 block-image.vue
+│        ├── 📄 block-list.vue
+│        ├── 📄 block-paragraph.vue
+│        ├── 📄 block-quote.vue
+│        ├── 📄 block-raw.vue
+│        ├── 📄 block-table.vue
+│        ├── 📄 index.vue
+│        ├── 📄 null.vue
+│        ├── 📄 quote.svg
+│      ├── 📄 index.js
+│      └── 📂 nav-menu/
+│        ├── 📄 index.vue
+│        ├── 📄 nav-submenu.vue
+│      └── 📂 pagination/
+│        ├── 📄 index.vue
+│        ├── 📄 readme.md
+│      └── 📂 site-footer/
+│        ├── 📄 index.vue
+│      └── 📂 site-header/
+│        ├── 📄 index.vue
+│    ├── 📄 main.js
+│    └── 📂 pages/
+│      ├── 📄 404.vue
+│      └── 📂 home/
+│        ├── 📄 index.vue
+│      └── 📂 post/
+│        ├── 📄 comments.vue
+│        ├── 📄 index.vue
+│      └── 📂 term/
+│        ├── 📄 index.vue
+│  ├── 📄 vite.config.js
+├── 📄 function.js
+├── 📄 package.sh
+├── 📄 readme.md
+└── 📂 server/
+│  ├── 📄 function-post.js
+│  ├── 📄 function-ssr.js
+│  ├── 📄 function.js
+│  ├── 📄 package-lock.json
+│  ├── 📄 package.json
+│  ├── 📄 ssr-body.js
+│  ├── 📄 ssr-common.js
+│  ├── 📄 ssr-head.js
+│  ├── 📄 webpack.config.cjs
+│  ├── 📄 yarn.lock
+└── 📂 srcs/
+│  └── 📂 page-settings/
+│    ├── 📄 index.vue
+│  ├── 📄 ssr-style.css
+└── 📄 theme.json
 ```
-base-theme
-├── app
-├── server
-├── srcs
-├── .gitignore
-├── function.js
-├── theme.json
-└── README.md
-```
+
+- `/app` 目录为`nvpress`的前台代码目录。
+- `/server` 目录为`nvpress`的后台代码目录。
+- `/srcs` 目录放置的是一些不用打包的可直接在后台引用的代码，如`page-settings`目录。
+- `/package.sh` 为打包脚本，打包后会在项目生成一个`base-theme`文件夹，和`base-theme.zip`压缩包。
+
+> 打包后的`base-theme`文件夹为`nvpress`的主题目录，您可以将其复制到`nvpress`的`themes`目录下，启用该主题。
 
 ## 注意事项
 
