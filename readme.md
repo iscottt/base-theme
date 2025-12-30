@@ -4,22 +4,6 @@
 
 这是一个基于`vue3+nvpress`的示例主题。
 
-## 安装
-
-```bash
-# 克隆项目
-git clone https://github.com/iscottt/base-theme.git
-
-# 进入项目目录
-cd base-theme
-
-# 安装依赖
-npm install
-
-# 启动项目
-npm run dev
-```
-
 ## 功能
 
 - [x] 顶部导航栏
